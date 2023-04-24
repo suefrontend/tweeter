@@ -1,0 +1,11 @@
+header {
+    width: 100%;
+    padding-top: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 520px;
+    background: #f9c885 url(../images/green-dust-and-scratches.png);
+    border: 1px solid #000;
+}
