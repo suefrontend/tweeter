@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweet.css" type="text/css" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" type="text/css">
@@ -38,10 +39,10 @@
         <i class="fa-solid fa-angles-down"></i>
       </div>
     </nav>
-    <header>
-      <div class="">
+    <header class="profile">
+      <!-- <div class=""> -->
           <img src="/images/profile-hex.png"> 
-      </div>
+      <!-- </div> -->
       <!-- <br> -->
       <div>
           <h2>Your Name</h2>
@@ -63,6 +64,28 @@
           </div>
         </form>
       </section>
+      <section>
+      <article class="tweet">
+        <header>
+          <div class="author">
+            <img src="./images/icon01.png" alt="Rhoda Jacobs" />
+            <span>Rhoda Jacobs</span>
+          </div>
+          <span class="additional-name">@MrsJacobs</span>
+        </header>
+          <div class="tweet-body">
+            <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</p>
+          </div>
+        <footer>
+          <span>10 days ago</span>
+          <ul>
+            <li><i class="fa-sharp fa-solid fa-flag"></i></li>
+            <li><i class="fa-sharp fa-solid fa-retweet"></i></li>
+            <li><i class="fa-sharp fa-solid fa-heart"></i></li>
+          </ul>
+        </footer>
+      </article>
+    </section>
     </main>
   </body>
 </html>
