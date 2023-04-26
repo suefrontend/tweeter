@@ -1,6 +1,10 @@
 .tweet {
     border: 3px solid #545149;
+    margin: 0 0 20px 0;
     padding: 10px;
+}
+.tweet:last-child {
+    margin: 0 0 0 0;
 }
 .tweet:hover {
     box-shadow: 5px 5px 1px 0px #b7c1e3;
