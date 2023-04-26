@@ -83,8 +83,17 @@ $(document).ready(function () {
   // Send POST request using form
   $("form").on("submit", (event) => {
     event.preventDefault();
-    const data = $("form").serialize();
 
+    const tweetLength = $.trim($("#tweet-text").val()).length;
+    if (tweetLength === 0) {
+      alert("Please enter something");
+      return;
+    } else if (tweetLength > 140) {
+      alert("Your tweet is too long");
+      return;
+    }
+
+    const data = $("form").serialize();
     $.ajax({
       type: "POST",
       url: "/tweets",
