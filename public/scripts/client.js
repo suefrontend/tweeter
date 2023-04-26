@@ -55,12 +55,22 @@ const data = [
 
 const renderTweets = function (tweets) {
   for (const tweet of tweets) {
-    $("#tweets-container").append(createTweetElement(tweet));
+    $("#tweets-container").prepend(createTweetElement(tweet));
   }
 };
 
+const loadTweets = () => {
+  $.ajax({
+    method: "GET",
+    url: "/tweets",
+    success: (data) => {
+      renderTweets(data);
+    },
+  });
+};
+
 $(document).ready(function () {
-  renderTweets(data);
+  loadTweets();
 
   // Send POST request using form
   $("form").on("submit", (event) => {
@@ -72,7 +82,7 @@ $(document).ready(function () {
       url: "/tweets",
       data,
     }).then(() => {
-      console.log("data", data);
+      loadTweets();
     });
   });
 });
