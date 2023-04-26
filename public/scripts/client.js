@@ -17,7 +17,7 @@ const createTweetElement = function (tweetData) {
             <p>${tweetData.content.text}</p>
         </div>
         <footer>
-            <span>${tweetData.created_at} days ago</span>
+            <span>${timeago.format(tweetData.created_at)}</span>
             <ul>
                 <li><i class="fa-sharp fa-solid fa-flag"></i></li>
                 <li><i class="fa-sharp fa-solid fa-retweet"></i></li>
@@ -71,6 +71,14 @@ const loadTweets = () => {
 
 $(document).ready(function () {
   loadTweets();
+
+  const test = timeago.format(1682465182000);
+  console.log("test", test);
+
+  // console.log(
+  //   "data.created_at.timeago()",
+  //   format(Date.now() - 11 * 1000 * 60 * 60)
+  // );
 
   // Send POST request using form
   $("form").on("submit", (event) => {
