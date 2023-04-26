@@ -28,7 +28,7 @@ const createTweetElement = function (data) {
             <p>${data.content.text}</p>
         </div>
         <footer>
-            <span>10 days ago</span>
+            <span>${data.created_at} days ago</span>
             <ul>
                 <li><i class="fa-sharp fa-solid fa-flag"></i></li>
                 <li><i class="fa-sharp fa-solid fa-retweet"></i></li>
