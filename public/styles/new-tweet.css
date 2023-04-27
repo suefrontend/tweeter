@@ -1,8 +1,6 @@
-
-
-/* .new-tweet__compose {
-    position: relative;
-} */
+.new-tweet {
+    margin: 0 0 50px 0;
+}
 label {
     display: block;
     margin-bottom: 10px;

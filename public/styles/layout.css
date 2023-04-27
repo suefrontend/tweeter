@@ -24,6 +24,21 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
  .container {
-  width: 90%;
-  margin: 30px auto;
+  padding: 40px;
+}
+#wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+@media only screen and (min-width: 1024px) {
+  #wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 200px 30px;
+  }
+  .container {
+    width: 60%;
+    padding: 0 40px 40px 40px;
+  }
 }
