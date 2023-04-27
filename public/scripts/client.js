@@ -56,6 +56,7 @@ const loadTweets = () => {
 $(document).ready(function () {
   loadTweets();
 
+  // Hide label when typing in textarea
   $("#tweet-text").on("click", () => {
     $('label[for="tweet-text"]').hide();
   });
@@ -63,6 +64,16 @@ $(document).ready(function () {
     const input = $("#tweet-text").val().length;
     if (input === 0) {
       $('label[for="tweet-text"]').toggle();
+    }
+  });
+
+  // Add background color to navigation when scrolled
+  $(window).on("scroll", function () {
+    mvHeight = $("nav").height();
+    if ($(window).scrollTop() > mvHeight) {
+      $("nav").addClass("transform");
+    } else {
+      $("nav").removeClass("transform");
     }
   });
 

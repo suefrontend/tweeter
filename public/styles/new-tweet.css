@@ -30,12 +30,13 @@ textarea:focus {
 button {
     background-color: #4056A1;
     color: #fff;
+    font-size: 1.2rem;
     border: none;
     text-transform: uppercase;
     font-weight: bold;
     padding: 5px 10px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 .counter {
     font-weight: bold;
@@ -43,10 +44,13 @@ button {
 .error {
     color: #ff0000;
 }
-#error-message {
+.error-message {
     display: none;
     padding:10px;
     color: #ff0000;
     border: 3px solid #ff0000;
     margin: 0 0 10px 0;
+}
+.hide {
+    display: none;
 }
