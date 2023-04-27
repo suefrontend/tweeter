@@ -6,9 +6,9 @@ $(document).ready(function () {
     tweetCounter.val(count);
 
     if (count < 0) {
-      $(tweetCounter).addClass("red");
+      $(tweetCounter).addClass("error");
     } else {
-      $(tweetCounter).removeClass("red");
+      $(tweetCounter).removeClass("error");
     }
   });
 });

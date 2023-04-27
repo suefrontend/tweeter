@@ -83,13 +83,23 @@ $(document).ready(function () {
   // Send POST request using form
   $("form").on("submit", (event) => {
     event.preventDefault();
-
     const tweetLength = $.trim($("#tweet-text").val()).length;
+    const errorMessage = $("#error-message");
+
+    $(errorMessage).hide();
+
     if (tweetLength === 0) {
-      alert("Please enter something");
+      // if ($(errorMessage).is(":hidden")) {
+      $(errorMessage).text("Please enter something.").slideDown("slow");
+      // }
       return;
-    } else if (tweetLength > 140) {
-      alert("Your tweet is too long");
+    }
+
+    if (tweetLength > 140) {
+      // if ($(errorMessage).is(":hidden")) {
+      $(errorMessage).text("Your tweet is too long.").slideDown("slow");
+      // $(errorMessage).slideDown("slow");
+      // }
       return;
     }
 
@@ -101,5 +111,7 @@ $(document).ready(function () {
     }).then(() => {
       loadTweets();
     });
+
+    $("#tweet-text").val("");
   });
 });
