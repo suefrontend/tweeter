@@ -3,6 +3,8 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+// Escape tags in tweet input
 const escapeHTML = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
@@ -34,39 +36,13 @@ const createTweetElement = function (tweetData) {
   `;
 };
 
-const data = [
-  {
-    user: {
-      name: "Newton",
-      avatars: "https://i.imgur.com/73hZDYK.png",
-      handle: "@SirIsaac",
-    },
-    content: {
-      text: "If I have seen further it is by standing on the shoulders of giants",
-    },
-    created_at: 1461116232227,
-  },
-  {
-    user: {
-      name: "Descartes",
-      avatars: "https://i.imgur.com/nlhLi3I.png",
-      handle: "@rd",
-    },
-    content: {
-      text: "Je pense , donc je suis",
-    },
-    created_at: 1461113959088,
-  },
-];
-
-// console.log("Escaped", escapeHTML("<script>alert('XSS!')</script>"));
-
 const renderTweets = function (tweets) {
   for (const tweet of tweets) {
     $("#tweets-container").prepend(createTweetElement(tweet));
   }
 };
 
+// Fetch Tweets
 const loadTweets = () => {
   $.ajax({
     method: "GET",
@@ -80,6 +56,16 @@ const loadTweets = () => {
 $(document).ready(function () {
   loadTweets();
 
+  $("#tweet-text").on("click", () => {
+    $('label[for="tweet-text"]').hide();
+  });
+  $("#tweet-text").on("blur", () => {
+    const input = $("#tweet-text").val().length;
+    if (input === 0) {
+      $('label[for="tweet-text"]').toggle();
+    }
+  });
+
   // Send POST request using form
   $("form").on("submit", (event) => {
     event.preventDefault();
@@ -89,17 +75,12 @@ $(document).ready(function () {
     $(errorMessage).hide();
 
     if (tweetLength === 0) {
-      // if ($(errorMessage).is(":hidden")) {
-      $(errorMessage).text("Please enter something.").slideDown("slow");
-      // }
+      $(errorMessage).text("Please write something.").slideDown("slow");
       return;
     }
 
     if (tweetLength > 140) {
-      // if ($(errorMessage).is(":hidden")) {
       $(errorMessage).text("Your tweet is too long.").slideDown("slow");
-      // $(errorMessage).slideDown("slow");
-      // }
       return;
     }
 
@@ -113,5 +94,7 @@ $(document).ready(function () {
     });
 
     $("#tweet-text").val("");
+    $("#tweet-counter").text("140");
+    $('label[for="tweet-text"]').show();
   });
 });

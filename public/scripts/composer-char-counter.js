@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $("textarea").on("keyup", function () {
-    const tweetCounter = $(this).parent().find("#tweet-counter");
+    const tweetCounter = $(this).parent().parent().find("output");
+
     let count = 140 - $(this).val().length;
 
     tweetCounter.val(count);

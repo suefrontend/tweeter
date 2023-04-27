@@ -1,11 +1,6 @@
 .new-tweet {
     margin: 0 0 50px 0;
 }
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
 textarea {
     border: none;
     background-color: inherit;
@@ -16,20 +11,31 @@ textarea {
 textarea:focus { 
     outline: none;
 }
+.new-tweet__body {
+    position: relative;
+}
+.new-tweet__body label {
+    display: block;
+    position: absolute;
+    font-weight: bold;
+    bottom: 12px;
+    cursor: text;
+}
 .new-tweet__bottom {
     font-family: 'Bungee', cursive;
     display: flex;
     justify-content: space-between;
     margin: 15px 0 0 0;
 }
-button[type="submit"] {
+button {
     background-color: #4056A1;
     color: #fff;
     border: none;
     text-transform: uppercase;
     font-weight: bold;
     padding: 5px 10px;
-    
+    cursor: pointer;
+    border-radius: 4px;
 }
 .counter {
     font-weight: bold;
@@ -42,4 +48,5 @@ button[type="submit"] {
     padding:10px;
     color: #ff0000;
     border: 3px solid #ff0000;
+    margin: 0 0 10px 0;
 }
