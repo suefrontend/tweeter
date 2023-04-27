@@ -5,6 +5,7 @@ nav {
     height: 120px;
     padding: 0 1.5em;
     position: fixed;
+    overflow: auto;
     display: flex;
     justify-content: space-between;
 }
@@ -22,9 +23,23 @@ nav {
 .nav__link i {
     margin: 5px 0 0 0;
     display: block;
+    animation: updown 2s infinite ease-in-out;
+    color: #ff0000;
+    cursor: pointer;
 }
 @media only screen and (min-width: 1024px) {
     nav {
-        background-color: #4056A1;
+        background: #4056A1;
     }
 }
+@keyframes updown {
+    0% {
+      transform: translate(0, 5px);
+    }
+    50% {
+      transform: translate(0, -8px);
+    }
+    100% {
+      transform: translate(0, 5px);
+    }
+  }
