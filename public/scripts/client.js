@@ -81,7 +81,7 @@ $(document).ready(function () {
   $("form").on("submit", (event) => {
     event.preventDefault();
     const tweetLength = $.trim($("#tweet-text").val()).length;
-    const errorMessage = $("#error-message");
+    const errorMessage = $(".error-message");
 
     $(errorMessage).hide();
 

@@ -13,6 +13,9 @@ header#profile {
 .light {
     font-weight: lighter;
 }
+header#profile h2 {
+    margin: 20px 0 0 0;
+}
 @media only screen and (min-width: 1024px) {
     header#profile {
         width: 30%;
