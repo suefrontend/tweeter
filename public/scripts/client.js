@@ -3,6 +3,12 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+const escapeHTML = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const createTweetElement = function (tweetData) {
   return `
     <article class="tweet">
@@ -14,7 +20,7 @@ const createTweetElement = function (tweetData) {
             <span class="additional-name">${tweetData.user.handle}</span>
         </header>
         <div class="tweet-body">
-            <p>${tweetData.content.text}</p>
+            <p>${escapeHTML(tweetData.content.text)}</p>
         </div>
         <footer>
             <span>${timeago.format(tweetData.created_at)}</span>
@@ -53,6 +59,8 @@ const data = [
   },
 ];
 
+// console.log("Escaped", escapeHTML("<script>alert('XSS!')</script>"));
+
 const renderTweets = function (tweets) {
   for (const tweet of tweets) {
     $("#tweets-container").prepend(createTweetElement(tweet));
@@ -71,14 +79,6 @@ const loadTweets = () => {
 
 $(document).ready(function () {
   loadTweets();
-
-  const test = timeago.format(1682465182000);
-  console.log("test", test);
-
-  // console.log(
-  //   "data.created_at.timeago()",
-  //   format(Date.now() - 11 * 1000 * 60 * 60)
-  // );
 
   // Send POST request using form
   $("form").on("submit", (event) => {
