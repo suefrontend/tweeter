@@ -55,11 +55,11 @@
       <!-- Page-specific (main) content here -->
       <main class="container">
         <section class="new-tweet hide">
-          <p class="error-message"></p>
           <form method="post" action="/tweets">
             <div class="new-tweet__body">
               <label for="tweet-text">What are you humming about?</label>
               <textarea name="text" id="tweet-text"></textarea>
+              <p class="error-message"></p>
             </div>
             <div class="new-tweet__bottom">
               <button type="submit">Tweet</button>

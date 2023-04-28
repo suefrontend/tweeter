@@ -56,17 +56,6 @@ const loadTweets = function() {
 $(document).ready(function() {
   loadTweets();
 
-  // Hide label when typing in textarea
-  $("#tweet-text").on("keypress", () => {
-    $('label[for="tweet-text"]').hide();
-  });
-  $("#tweet-text").on("blur", () => {
-    const input = $("#tweet-text").val().length;
-    if (input === 0) {
-      $('label[for="tweet-text"]').toggle();
-    }
-  });
-
   // Add background color to navigation when scrolled
   $(window).on("scroll", function() {
     const navHeight = $("nav").height();
