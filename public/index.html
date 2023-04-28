@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <!-- Meta Information -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tweeter - Home Page</title>
 
     <!-- External CSS -->
@@ -22,12 +23,17 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" type="text/css">
 
+    <!-- Timeago -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"></script>
+
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+    <script type="text/javascript" src="/scripts/toggle-new-tweet.js"></script>
+    <script type="text/javascript" src="/scripts/composer.js"></script>
   </head>
 
   <body>
@@ -36,30 +42,34 @@
       <span class="logo">tweeter</span>
       <div class="nav__link">
         <span><b>Write</b> a new tweet</span>
-        <i class="fa-solid fa-angles-down"></i>
+        <button><i class="fa-solid fa-angles-down" id="create-new-tweet"></i></button>
       </div>
     </nav>
-    <header class="profile">
-          <img src="/images/profile-hex.png"> 
-      <div>
-          <h2>Your Name</h2>
-      </div>
-    </header>
 
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <form method="post" action="/tweets">
-            <label for="tweet-text">What are you humming about?</label>
-            <textarea name="text" id="tweet-text"></textarea>
-          <div class="new-tweet__bottom">
-            <button type="submit">Tweet</button>
-            <output name="counter" id="tweet-counter" class="counter" for="tweet-text">140</output>
-          </div>
-        </form>
-      </section>
-      <section id="tweets-container"></section>
-    </main>
+    <div id="wrapper">
+      <header id="profile">
+        <img src="/images/profile-hex.png"> 
+        <h2>Amy <span class="light">Mansell</span></h2>
+      </header>
+
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <section class="new-tweet hide">
+          <p class="error-message"></p>
+          <form method="post" action="/tweets">
+            <div class="new-tweet__body">
+              <label for="tweet-text">What are you humming about?</label>
+              <textarea name="text" id="tweet-text"></textarea>
+            </div>
+            <div class="new-tweet__bottom">
+              <button type="submit">Tweet</button>
+              <output name="counter" id="tweet-counter" for="tweet-text">140</output>
+            </div>
+          </form>
+        </section>
+        <section id="tweets-container"></section>
+        <button id="scroll-top"><i class="fa-solid fa-angles-up" id="create-new-tweet"></i></button>
+      </main>
+    </div>
   </body>
 </html>

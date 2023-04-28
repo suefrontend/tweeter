@@ -3,6 +3,14 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+// Escape tags in tweet input
+const escapeHTML = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const createTweetElement = function (tweetData) {
   return `
     <article class="tweet">
@@ -14,10 +22,10 @@ const createTweetElement = function (tweetData) {
             <span class="additional-name">${tweetData.user.handle}</span>
         </header>
         <div class="tweet-body">
-            <p>${tweetData.content.text}</p>
+            <p>${escapeHTML(tweetData.content.text)}</p>
         </div>
         <footer>
-            <span>${tweetData.created_at} days ago</span>
+            <span>${timeago.format(tweetData.created_at)}</span>
             <ul>
                 <li><i class="fa-sharp fa-solid fa-flag"></i></li>
                 <li><i class="fa-sharp fa-solid fa-retweet"></i></li>
@@ -28,51 +36,76 @@ const createTweetElement = function (tweetData) {
   `;
 };
 
-const data = [
-  {
-    user: {
-      name: "Newton",
-      avatars: "https://i.imgur.com/73hZDYK.png",
-      handle: "@SirIsaac",
-    },
-    content: {
-      text: "If I have seen further it is by standing on the shoulders of giants",
-    },
-    created_at: 1461116232227,
-  },
-  {
-    user: {
-      name: "Descartes",
-      avatars: "https://i.imgur.com/nlhLi3I.png",
-      handle: "@rd",
-    },
-    content: {
-      text: "Je pense , donc je suis",
-    },
-    created_at: 1461113959088,
-  },
-];
-
 const renderTweets = function (tweets) {
   for (const tweet of tweets) {
-    $("#tweets-container").append(createTweetElement(tweet));
+    $("#tweets-container").prepend(createTweetElement(tweet));
   }
 };
 
+// Fetch Tweets
+const loadTweets = function () {
+  $.ajax({
+    method: "GET",
+    url: "/tweets",
+    success: (data) => {
+      renderTweets(data);
+    },
+  });
+};
+
 $(document).ready(function () {
-  renderTweets(data);
+  loadTweets();
+
+  // Hide label when typing in textarea
+  $("#tweet-text").on("keypress", () => {
+    $('label[for="tweet-text"]').hide();
+  });
+  $("#tweet-text").on("blur", () => {
+    const input = $("#tweet-text").val().length;
+    if (input === 0) {
+      $('label[for="tweet-text"]').toggle();
+    }
+  });
+
+  // Add background color to navigation when scrolled
+  $(window).on("scroll", function () {
+    const navHeight = $("nav").height();
+    if ($(window).scrollTop() > navHeight) {
+      $("nav").addClass("transform");
+    } else {
+      $("nav").removeClass("transform");
+    }
+  });
 
   // Send POST request using form
-  $("form").on("submit", (event) => {
+  $("form").on("submit", function (event) {
     event.preventDefault();
-    const data = $("form").serialize();
+    const tweetLength = $.trim($("#tweet-text").val()).length;
+    const errorMessage = $(".error-message");
 
+    $(errorMessage).hide();
+
+    if (tweetLength === 0) {
+      $(errorMessage).text("Please write something.").slideDown("slow");
+      return;
+    }
+
+    if (tweetLength > 140) {
+      $(errorMessage).text("Your tweet is too long.").slideDown("slow");
+      return;
+    }
+
+    const data = $("form").serialize();
     $.ajax({
       type: "POST",
       url: "/tweets",
       data,
     }).then(() => {
-      console.log("data", data);
+      loadTweets();
     });
+
+    $("#tweet-text").val("");
+    $("#tweet-counter").text("140");
+    $('label[for="tweet-text"]').show();
   });
 });
