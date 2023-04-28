@@ -1,5 +1,6 @@
 .new-tweet {
     margin: 0 0 50px 0;
+    z-index: -1;
 }
 textarea {
     border: none;
@@ -27,7 +28,7 @@ textarea:focus {
     justify-content: space-between;
     margin: 15px 0 0 0;
 }
-button {
+.new-tweet button {
     background-color: #4056A1;
     color: #fff;
     font-size: 1.2rem;

@@ -5,6 +5,7 @@ nav {
     height: 120px;
     padding: 0 1.5em;
     position: fixed;
+    z-index: 1;
     overflow: auto;
     display: flex;
     justify-content: space-between;
@@ -26,6 +27,14 @@ nav {
     animation: updown 2s infinite ease-in-out;
     color: #ff0000;
     cursor: pointer;
+}
+nav button {
+    border: none;
+    background: none;
+    transition: 0.5s;
+}
+nav button:hover {
+    transform: scale(1.5);
 }
 @media only screen and (min-width: 1024px) {
     nav {

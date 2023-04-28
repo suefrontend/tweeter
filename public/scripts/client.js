@@ -57,7 +57,7 @@ $(document).ready(function () {
   loadTweets();
 
   // Hide label when typing in textarea
-  $("#tweet-text").on("click", () => {
+  $("#tweet-text").on("keypress", () => {
     $('label[for="tweet-text"]').hide();
   });
   $("#tweet-text").on("blur", () => {
