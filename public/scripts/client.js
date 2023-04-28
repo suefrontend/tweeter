@@ -5,13 +5,13 @@
  */
 
 // Escape tags in tweet input
-const escapeHTML = function (str) {
+const escapeHTML = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
-const createTweetElement = function (tweetData) {
+const createTweetElement = function(tweetData) {
   return `
     <article class="tweet">
         <header>
@@ -36,14 +36,14 @@ const createTweetElement = function (tweetData) {
   `;
 };
 
-const renderTweets = function (tweets) {
+const renderTweets = function(tweets) {
   for (const tweet of tweets) {
     $("#tweets-container").prepend(createTweetElement(tweet));
   }
 };
 
 // Fetch Tweets
-const loadTweets = function () {
+const loadTweets = function() {
   $.ajax({
     method: "GET",
     url: "/tweets",
@@ -53,22 +53,11 @@ const loadTweets = function () {
   });
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
   loadTweets();
 
-  // Hide label when typing in textarea
-  $("#tweet-text").on("keypress", () => {
-    $('label[for="tweet-text"]').hide();
-  });
-  $("#tweet-text").on("blur", () => {
-    const input = $("#tweet-text").val().length;
-    if (input === 0) {
-      $('label[for="tweet-text"]').toggle();
-    }
-  });
-
   // Add background color to navigation when scrolled
-  $(window).on("scroll", function () {
+  $(window).on("scroll", function() {
     const navHeight = $("nav").height();
     if ($(window).scrollTop() > navHeight) {
       $("nav").addClass("transform");
@@ -78,7 +67,7 @@ $(document).ready(function () {
   });
 
   // Send POST request using form
-  $("form").on("submit", function (event) {
+  $("form").on("submit", function(event) {
     event.preventDefault();
     const tweetLength = $.trim($("#tweet-text").val()).length;
     const errorMessage = $(".error-message");
