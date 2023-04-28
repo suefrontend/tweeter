@@ -43,7 +43,7 @@ const renderTweets = function (tweets) {
 };
 
 // Fetch Tweets
-const loadTweets = () => {
+const loadTweets = function () {
   $.ajax({
     method: "GET",
     url: "/tweets",
@@ -69,8 +69,8 @@ $(document).ready(function () {
 
   // Add background color to navigation when scrolled
   $(window).on("scroll", function () {
-    mvHeight = $("nav").height();
-    if ($(window).scrollTop() > mvHeight) {
+    const navHeight = $("nav").height();
+    if ($(window).scrollTop() > navHeight) {
       $("nav").addClass("transform");
     } else {
       $("nav").removeClass("transform");
@@ -78,7 +78,7 @@ $(document).ready(function () {
   });
 
   // Send POST request using form
-  $("form").on("submit", (event) => {
+  $("form").on("submit", function (event) {
     event.preventDefault();
     const tweetLength = $.trim($("#tweet-text").val()).length;
     const errorMessage = $(".error-message");
