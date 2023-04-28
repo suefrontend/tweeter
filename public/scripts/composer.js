@@ -1,9 +1,9 @@
-$(document).ready(function () {
+$(document).ready(function() {
   const scrollBtn = $("#scroll-top");
   const headerHeight = 120;
   scrollBtn.hide();
 
-  $(window).scroll(function () {
+  $(window).scroll(function() {
     if ($(this).scrollTop() > headerHeight) {
       scrollBtn.fadeIn();
       $(".nav__link").hide();
@@ -13,10 +13,10 @@ $(document).ready(function () {
     }
   });
 
-  scrollBtn.click(function () {
+  scrollBtn.click(function() {
     $("body, html").animate({ scrollTop: 0 }, 500);
 
-    setTimeout(function () {
+    setTimeout(function() {
       $(".new-tweet").slideDown();
       $("textarea").focus();
     }, 500);

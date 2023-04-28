@@ -1,5 +1,5 @@
-$(document).ready(function () {
-  $("textarea").on("keyup", function () {
+$(document).ready(function() {
+  $("textarea").on("keyup", function() {
     const tweetCounter = $(this).closest("form").find("output");
 
     let count = 140 - $(this).val().length;
