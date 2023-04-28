@@ -1,0 +1,62 @@
+@import 'colors';
+@mixin align-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+$thick-border: 3px solid #545149;
+
+.tweet {
+    border: $thick-border;
+    margin: 0 0 20px 0;
+    padding: 20px 10px;
+
+    &:last-child {
+        margin: 0 0 0 0;
+    }
+    &:hover {
+        box-shadow: 5px 5px 1px 0px $light;
+    }
+    header {
+        @include align-horizontal();
+        font-size: 0.8em;
+        padding: 0 20px;
+
+        .author {
+            @include align-horizontal();
+    
+            img {
+                margin: 0 15px 0 0;
+            }
+        }
+
+        .additional-name {
+            color: $light;
+        }
+    }     
+    .tweet-body {
+        border-bottom: $thick-border;
+        padding: 0 20px;
+    }
+    footer {
+        @include align-horizontal();
+        padding: 10px 20px 0 20px;
+        font-size: 0.6em;
+
+        ul {
+            margin: 0;
+            list-style-type: none;
+            display: flex;
+            column-gap: 10px;
+
+            i {
+                color: $secondary;
+                cursor: pointer;
+
+                &:hover {
+                    color: #b8971f;
+                }
+            }
+        }
+    }
+}
